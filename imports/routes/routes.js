@@ -11,6 +11,9 @@ import Login from '../ui/Login';
 const onEnterNotePage = (nextState) => {
     Session.set('selectedNoteId', nextState.params.id);
 };
+const onLeaveNotePage = () => {
+  Session.set('selectedNoteId', undefined);
+};
 export const onAuthChange = (isAuthenticated, currentPagePrivacy) => {
   const isUnauthenticatedPage = currentPagePrivacy === 'unauth';
   const isAuthenticatedPage = currentPagePrivacy === 'auth';
@@ -27,9 +30,6 @@ export const globalOnChange = (prevState, nextState) => {
 export const globalOnEnter = (nextState) => {
   const lastRoute = nextState.routes[nextState.routes.length - 1];
   Session.set('currentPagePrivacy', lastRoute.privacy);
-};
-const onLeaveNotePage = () => {
-  Session.set('selectedNoteId', undefined);
 };
 
 export const routes = (
